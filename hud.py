@@ -62,7 +62,7 @@ def printHUD(hands):
                 if action == "called":
                     if username not in handVPIP:
                         handVPIP.append(username)
-                elif action == "bet":
+                elif action == "bet" or action == "raised":
                     if username not in handVPIP:
                         handVPIP.append(username)
                     if username not in handPFR:
@@ -76,7 +76,8 @@ def printHUD(hands):
         for username in handPFR:
             players[username]['PFR'] += 1
 
-    print(players)
+    for player in players.keys():
+        print(f"{ player }: ({ players[player]['hands'] }) { int(players[player]['VPIP'] / players[player]['hands'] * 100) } / { int(players[player]['PFR'] / players[player]['hands'] * 100) }")
 
 
 def updateHands(hands, info):
